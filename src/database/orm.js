@@ -4,7 +4,7 @@ const dotenv = require('dotenv').config();
 
 /** Sequelize db connection
  ****************************/
-const orm = new Sequelize(`postgres://${process.env.USER}:${process.env.PASSWORD}@localhost:5432/trera`);
+const orm = new Sequelize(`postgres://${process.env.PGUSER}:${process.env.PGPASSWORD}@localhost:5432/trera`);
 
 
 /** Schemas

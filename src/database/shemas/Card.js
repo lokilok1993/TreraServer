@@ -11,6 +11,14 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    summery: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
     creator_id: {
         type: DataTypes.INTEGER,
         allowNull: false,

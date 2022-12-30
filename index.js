@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 5555;
+const PORT = process.env.PORT || 3001;
 const cors = require('cors');
 
 
@@ -14,7 +14,10 @@ app.use(cors());
 /** Routers
 **************/
 const auth = require('./src/routes/auth');
+const projects = require('./src/routes/projects');
+
 app.use('/auth', auth);
+app.use('/projects', projects);
 
 
 /** !!! CUSTOM SYNC DEV PURPOSES !!! **/
