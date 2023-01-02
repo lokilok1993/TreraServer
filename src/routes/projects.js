@@ -1,23 +1,23 @@
 const { Router } = require('express');
 const router = Router();
-const jwt = require('jsonwebtoken');
 const { Project, User } = require('../database/orm');
 const { validateRules, validate } = require('../validation/project_validator');
 const checkAuth = require('../middleware/check_auth')
 
-router.get('/', async (req, res) => {
-    const { token } = req.body;
-    const user = await User.findByPk(jwt.decode(token).id);
+router.get('/', checkAuth, async (req, res) => {
+    const user = await User.findByPk(req.userData.id);
     const userProjects = await user.getProjects();
     res.json(userProjects)
 })
 
 router.post('/', checkAuth, validateRules(), validate,
     async (req, res) => {
-        const { name, token } = req.body;
-        const user = await User.findByPk(jwt.decode(token).id);
+        const { name } = req.body;
+        const user = await User.findByPk(req.userData.id);
         const project = await Project.create({name})
         project.addUser(user);
+
+        res.json({message: "Проект создан"});
     }
 );
 
