@@ -27,6 +27,7 @@ const Card = orm.define('Card', CardSchema);
  ****************************/
 User.belongsToMany(Project, {through: 'ProjectsUsers'})
 Project.belongsToMany(User, {through: 'ProjectsUsers'})
+Project.hasMany(Column)
 Column.belongsTo(Project)
 Card.belongsTo(Column)
 
