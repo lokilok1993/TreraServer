@@ -7,6 +7,10 @@ module.exports = {
         allowNull: false,
         autoIncrement: true
     },
+    creator_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
