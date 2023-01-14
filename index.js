@@ -16,10 +16,12 @@ app.use(cors());
 const auth = require('./src/routes/auth');
 const projects = require('./src/routes/projects');
 const columns = require('./src/routes/column');
+const cards = require('./src/routes/card');
 
 app.use('/auth', auth);
 app.use('/projects', projects);
 app.use('/columns', columns);
+app.use('/card', cards);
 
 
 /** !!! CUSTOM SYNC DEV PURPOSES !!! **/

@@ -6,7 +6,7 @@ const checkAuth = require('../middleware/check_auth')
 
 router.get('/', checkAuth, async (req, res) => {
     const user = await User.findByPk(req.userData.id);
-    const userProjects = await user.getProjects();
+    const userProjects = await user?.getProjects();
     res.json(userProjects)
 })
 

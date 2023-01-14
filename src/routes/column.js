@@ -16,8 +16,8 @@ router.post('/', checkAuth, validateRules(), validate,
     async (req, res) => {
         const { name, position, project_id } = req.body;
         const project = await Project.findByPk(project_id);
-        const column = await Column.create({name, position})
-        await project.addColumn(column)
+        const column = await Column.create({name, position});
+        await project.addColumn(column);
 
         res.json({message: "Колонка создана", column});
     }
