@@ -34,6 +34,17 @@ router.post('/', checkAuth,
     }
 );
 
+
+router.delete('/:cardId', checkAuth, async (req, res) => {
+    const card = await Card.findByPk(req.params.cardId);
+    const deleted = card.destroy();
+
+    if(deleted)
+        res.json({message: 'Карточка удалена', id: req.params.cardId})
+    res.json({message: 'Ошибка'})
+
+})
+
 module.exports = router;
 
 
