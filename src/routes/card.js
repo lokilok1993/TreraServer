@@ -4,13 +4,13 @@ const {Column, Card} = require('../database/orm');
 const checkAuth = require('../middleware/check_auth')
 
 
-router.get('/:columnId', checkAuth, async (req, res) => {
+router.get('/get-column-cards/:columnId', checkAuth, async (req, res) => {
     const column = await Column.findByPk(req.params.columnId);
     const cards = await column.getCards();
     res.json(cards)
 })
 
-router.post('/', checkAuth,
+router.post('/create-card', checkAuth,
     async (req, res) => {
         const {
             name,
@@ -35,7 +35,7 @@ router.post('/', checkAuth,
 );
 
 
-router.delete('/:cardId', checkAuth, async (req, res) => {
+router.delete('/delete-card/:cardId', checkAuth, async (req, res) => {
     const card = await Card.findByPk(req.params.cardId);
     const deleted = card.destroy();
 

@@ -6,13 +6,13 @@ const checkAuth = require('../middleware/check_auth')
 
 
 
-router.get('/:projectId', checkAuth, async (req, res) => {
+router.get('/get-project-columns/:projectId', checkAuth, async (req, res) => {
         const project = await Project.findByPk(req.params.projectId);
         const columns = await project.getColumns();
         res.json(columns)
 })
 
-router.post('/', checkAuth, validateRules(), validate,
+router.post('/create-column', checkAuth, validateRules(), validate,
     async (req, res) => {
         const { name, position, project_id } = req.body;
         const project = await Project.findByPk(project_id);
@@ -24,7 +24,7 @@ router.post('/', checkAuth, validateRules(), validate,
 );
 
 
-router.delete('/:columnId', checkAuth, async (req, res) => {
+router.delete('delete-column/:columnId', checkAuth, async (req, res) => {
         const column = await Column.findByPk(req.params.columnId);
         const deleted = column.destroy();
 

@@ -4,13 +4,13 @@ const { Project, User } = require('../database/orm');
 const { validateRules, validate } = require('../validation/project_validator');
 const checkAuth = require('../middleware/check_auth')
 
-router.get('/', checkAuth, async (req, res) => {
+router.get('/get-all', checkAuth, async (req, res) => {
     const user = await User.findByPk(req.userData.id);
     const userProjects = await user?.getProjects();
     res.json(userProjects)
 })
 
-router.post('/', checkAuth, validateRules(), validate,
+router.post('/create-project', checkAuth, validateRules(), validate,
     async (req, res) => {
         const { name } = req.body;
         const user = await User.findByPk(req.userData.id);
@@ -21,7 +21,7 @@ router.post('/', checkAuth, validateRules(), validate,
     }
 );
 
-router.delete('/', checkAuth, async (req, res) => {
+router.delete('/delete-project', checkAuth, async (req, res) => {
     const { project_id } = req.body;
     const project = await Project.findByPk(project_id);
     if(project.creator_id !== req.userData.id){
