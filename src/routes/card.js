@@ -34,6 +34,32 @@ router.post('/create-card', checkAuth,
     }
 );
 
+router.post('/update-card', checkAuth,
+    async (req, res) => {
+        const {
+            name,
+            summery,
+            description,
+            card_id,
+        } = req.body;
+
+        const card = await Card.findByPk(card_id);
+
+        if(!card){
+            res.json({message: 'Карточка не найдена'})
+            return
+        }
+
+        await card.update({
+            name: name || card.name,
+            summery: summery || card.summery,
+            description: description || card.description,
+            card_id: card_id || card.card_id
+        })
+
+        res.json({message: "Карточка обновлена", card});
+    }
+);
 
 router.delete('/delete-card/:cardId', checkAuth, async (req, res) => {
     const card = await Card.findByPk(req.params.cardId);
