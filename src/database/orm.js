@@ -1,6 +1,8 @@
 const { Sequelize } = require('sequelize');
 const dotenv = require('dotenv').config();
 
+const modOpt = {underscored: true}
+
 
 /** Sequelize db connection
  ****************************/
@@ -17,10 +19,10 @@ const CardSchema = require('./shemas/Card')
 
 /** Models
  ****************************/
-const User = orm.define('User', UserSchema);
-const Project = orm.define('Project', ProjectSchema);
-const Column = orm.define('Column', ColumnSchema);
-const Card = orm.define('Card', CardSchema);
+const User = orm.define('User', UserSchema, modOpt);
+const Project = orm.define('Project', ProjectSchema, modOpt);
+const Column = orm.define('Column', ColumnSchema, modOpt);
+const Card = orm.define('Card', CardSchema, modOpt);
 
 
 /** Relations

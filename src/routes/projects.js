@@ -17,7 +17,7 @@ router.post('/create-project', checkAuth, validateRules(), validate,
         const project = await Project.create({name, creator_id: req.userData.id})
         project.addUser(user);
 
-        res.json({message: "Проект создан"});
+        res.json({message: "Проект создан", project});
     }
 );
 
