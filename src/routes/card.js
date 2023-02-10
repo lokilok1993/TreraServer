@@ -30,7 +30,7 @@ router.post('/create-card', checkAuth,
         })
         await column.addCard(card)
 
-        res.json({message: "Карточка создана", card});
+        res.json({message: "Карточка создана", card: {...card.dataValues, ColumnId: column_id} });
     }
 );
 
@@ -40,10 +40,10 @@ router.post('/update-card', checkAuth,
             name,
             summery,
             description,
-            card_id,
+            id,
         } = req.body;
 
-        const card = await Card.findByPk(card_id);
+        const card = await Card.findByPk(id);
 
         if(!card){
             res.json({message: 'Карточка не найдена'})
@@ -54,7 +54,7 @@ router.post('/update-card', checkAuth,
             name: name || card.name,
             summery: summery || card.summery,
             description: description || card.description,
-            card_id: card_id || card.card_id
+            id: id || card.id
         })
 
         res.json({message: "Карточка обновлена", card});
