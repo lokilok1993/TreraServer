@@ -47,10 +47,11 @@ router.delete('delete-column/:columnId', checkAuth, async (req, res) => {
     const column = await Column.findByPk(req.params.columnId);
     const deleted = column.destroy();
 
-    if (deleted)
+    if (deleted){
         res.json({message: 'Колонка удалена', id: req.params.cardId})
-    res.json({message: 'Ошибка'})
-
+    }else{
+        res.json({message: 'Ошибка'})
+    }
 })
 
 module.exports = router;

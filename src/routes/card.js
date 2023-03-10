@@ -41,6 +41,7 @@ router.post('/update-card', checkAuth,
             summery,
             description,
             id,
+            ColumnId,
         } = req.body;
 
         const card = await Card.findByPk(id);
@@ -54,7 +55,8 @@ router.post('/update-card', checkAuth,
             name: name || card.name,
             summery: summery || card.summery,
             description: description || card.description,
-            id: id || card.id
+            id: id || card.id,
+            ColumnId: ColumnId || card.ColumnId
         })
 
         res.json({message: "Карточка обновлена", card});
@@ -65,10 +67,11 @@ router.delete('/delete-card/:cardId', checkAuth, async (req, res) => {
     const card = await Card.findByPk(req.params.cardId);
     const deleted = card.destroy();
 
-    if(deleted)
+    if(deleted){
         res.json({message: 'Карточка удалена', id: req.params.cardId})
-    res.json({message: 'Ошибка'})
-
+    }else{
+        res.json({message: 'Ошибка'})
+    }
 })
 
 module.exports = router;
