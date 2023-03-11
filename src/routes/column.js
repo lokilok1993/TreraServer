@@ -43,8 +43,9 @@ router.post('/update-column', checkAuth, validateRules(), validate,
 );
 
 
-router.delete('delete-column/:columnId', checkAuth, async (req, res) => {
+router.delete('/delete-column/:columnId', checkAuth, async (req, res) => {
     const column = await Column.findByPk(req.params.columnId);
+    console.log(column);
     const deleted = column.destroy();
 
     if (deleted){
