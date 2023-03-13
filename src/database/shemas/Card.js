@@ -19,6 +19,10 @@ module.exports = {
         type: DataTypes.TEXT,
         allowNull: false,
     },
+    priority: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
     creator_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
