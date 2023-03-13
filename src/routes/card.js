@@ -40,6 +40,7 @@ router.post('/update-card', checkAuth,
             name,
             summery,
             description,
+            priority,
             id,
             ColumnId,
         } = req.body;
@@ -55,6 +56,7 @@ router.post('/update-card', checkAuth,
             name: name || card.name,
             summery: summery || card.summery,
             description: description || card.description,
+            priority: priority || card.priority,
             id: id || card.id,
             ColumnId: ColumnId || card.ColumnId
         })
