@@ -56,7 +56,7 @@ router.post('/update-card', checkAuth,
             name: name || card.name,
             summery: summery || card.summery,
             description: description || card.description,
-            priority: priority || card.priority,
+            priority: priority !== undefined ? priority : card.priority,
             id: id || card.id,
             ColumnId: ColumnId || card.ColumnId
         })
