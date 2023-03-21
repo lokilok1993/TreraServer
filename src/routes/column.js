@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { Project, Column } = require('../database/orm');
+const { Project, Column, Card } = require('../database/orm');
 const { validateRules, validate } = require('../validation/project_validator');
 const checkAuth = require('../middleware/check_auth')
 
@@ -8,7 +8,7 @@ const checkAuth = require('../middleware/check_auth')
 
 router.get('/get-project-columns/:projectId', checkAuth, async (req, res) => {
     const project = await Project.findByPk(req.params.projectId);
-    const columns = await project.getColumns();
+    const columns = await project.getColumns({include: Card});
     res.json(columns)
 })
 
